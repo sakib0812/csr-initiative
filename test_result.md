@@ -122,15 +122,18 @@ backend:
 
   - task: "Event creation and management API"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Created comprehensive event management with business showcases and corporate invitations"
+      - working: true
+        agent: "testing"
+        comment: "✅ PASSED - Event CRUD operations working perfectly. NGOs can create events with participating businesses. Event listing, specific event retrieval, and my events endpoint all functional. Fixed route ordering issue for /events/my endpoint."
 
   - task: "Business profile management API"
     implemented: true
