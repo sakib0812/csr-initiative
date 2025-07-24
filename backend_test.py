@@ -95,31 +95,29 @@ class CSRPlatformTester:
         """Test user login functionality"""
         self.log("Testing user login...")
         
-        login_data = [
-            {"email": "priya.ngo@ruralwomen.org", "password": "SecurePass123!", "role": "ngo"},
-            {"email": "meera.business@acharmama.com", "password": "BusinessPass456!", "role": "business_owner"},
-            {"email": "rajesh.corp@reliancemart.com", "password": "CorporatePass789!", "role": "corporate"}
-        ]
+        if not hasattr(self, 'test_users'):
+            self.log("❌ No test users available for login", "ERROR")
+            return False
         
         success_count = 0
-        for login in login_data:
+        for user_data in self.test_users:
             try:
                 response = requests.post(f"{self.base_url}/auth/login", json={
-                    "email": login["email"],
-                    "password": login["password"]
+                    "email": user_data["email"],
+                    "password": user_data["password"]
                 })
                 if response.status_code == 200:
                     data = response.json()
                     # Update tokens from login
-                    self.tokens[login["role"]] = data["access_token"]
-                    self.log(f"✅ Login successful for {login['role']}")
+                    self.tokens[user_data["role"]] = data["access_token"]
+                    self.log(f"✅ Login successful for {user_data['role']}")
                     success_count += 1
                 else:
-                    self.log(f"❌ Login failed for {login['role']}: {response.status_code} - {response.text}", "ERROR")
+                    self.log(f"❌ Login failed for {user_data['role']}: {response.status_code} - {response.text}", "ERROR")
             except Exception as e:
-                self.log(f"❌ Login error for {login['role']}: {str(e)}", "ERROR")
+                self.log(f"❌ Login error for {user_data['role']}: {str(e)}", "ERROR")
         
-        return success_count == len(login_data)
+        return success_count == len(self.test_users)
     
     def test_business_creation(self):
         """Test business profile creation by business owners"""
