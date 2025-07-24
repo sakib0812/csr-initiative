@@ -46,7 +46,7 @@ class CSRPlatformTester:
         
         test_users = [
             {
-                "email": "priya.ngo@ruralwomen.org",
+                "email": f"priya.ngo.{datetime.now().strftime('%H%M%S')}@ruralwomen.org",
                 "password": "SecurePass123!",
                 "name": "Priya Sharma",
                 "role": "ngo",
@@ -54,7 +54,7 @@ class CSRPlatformTester:
                 "phone": "+91-9876543210"
             },
             {
-                "email": "meera.business@acharmama.com",
+                "email": f"meera.business.{datetime.now().strftime('%H%M%S')}@acharmama.com",
                 "password": "BusinessPass456!",
                 "name": "Meera Devi",
                 "role": "business_owner",
@@ -62,7 +62,7 @@ class CSRPlatformTester:
                 "phone": "+91-8765432109"
             },
             {
-                "email": "rajesh.corp@reliancemart.com",
+                "email": f"rajesh.corp.{datetime.now().strftime('%H%M%S')}@reliancemart.com",
                 "password": "CorporatePass789!",
                 "name": "Rajesh Kumar",
                 "role": "corporate",
