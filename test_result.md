@@ -152,15 +152,18 @@ backend:
 
   - task: "Connection/Interest management API"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Implemented connection system for corporates to express interest in businesses"
+      - working: true
+        agent: "testing"
+        comment: "✅ PASSED - Connection system working perfectly. Corporates can express interest in businesses from events. Connection tracking works for all user roles (corporate, business owner, NGO). Fixed ConnectionCreate model to auto-populate corporate_id from authenticated user."
 
 frontend:
   - task: "Landing page with hero section"
