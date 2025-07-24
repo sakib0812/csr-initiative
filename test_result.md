@@ -107,15 +107,18 @@ user_problem_statement: "Create CSR initiatives form layout where NGOs will crea
 backend:
   - task: "Multi-user authentication system (NGO, Business Owner, Corporate)"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Implemented JWT-based authentication with user registration/login for three user roles"
+      - working: true
+        agent: "testing"
+        comment: "✅ PASSED - All authentication endpoints working correctly. Registration creates users with proper role-based access. Login generates valid JWT tokens. Fixed hashed_password storage issue during testing."
 
   - task: "Event creation and management API"
     implemented: true
