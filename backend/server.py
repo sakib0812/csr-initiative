@@ -242,13 +242,6 @@ async def get_events():
     events = await db.events.find().to_list(1000)
     return [Event(**event) for event in events]
 
-@api_router.get("/events/{event_id}", response_model=Event)
-async def get_event(event_id: str):
-    event = await db.events.find_one({"id": event_id})
-    if not event:
-        raise HTTPException(status_code=404, detail="Event not found")
-    return Event(**event)
-
 @api_router.get("/events/my", response_model=List[Event])
 async def get_my_events(current_user: User = Depends(get_current_user)):
     if current_user.role == UserRole.NGO:
@@ -262,6 +255,13 @@ async def get_my_events(current_user: User = Depends(get_current_user)):
         events = await db.events.find({"participating_businesses.business_id": {"$in": business_ids}}).to_list(1000)
     
     return [Event(**event) for event in events]
+
+@api_router.get("/events/{event_id}", response_model=Event)
+async def get_event(event_id: str):
+    event = await db.events.find_one({"id": event_id})
+    if not event:
+        raise HTTPException(status_code=404, detail="Event not found")
+    return Event(**event)
 
 # Connection Routes
 @api_router.post("/connections", response_model=Connection)
