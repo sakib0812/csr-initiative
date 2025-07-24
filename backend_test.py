@@ -71,6 +71,9 @@ class CSRPlatformTester:
             }
         ]
         
+        # Store test users for login test
+        self.test_users = test_users
+        
         success_count = 0
         for user_data in test_users:
             try:
