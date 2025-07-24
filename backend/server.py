@@ -130,7 +130,6 @@ class Connection(BaseModel):
 class ConnectionCreate(BaseModel):
     event_id: str
     business_id: str
-    corporate_id: str
     notes: Optional[str] = None
 
 # Utility functions
