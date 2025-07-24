@@ -137,15 +137,18 @@ backend:
 
   - task: "Business profile management API"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Built business CRUD operations for rural entrepreneurs to showcase their ventures"
+      - working: true
+        agent: "testing"
+        comment: "✅ PASSED - Business management APIs working excellently. Business owners can create detailed profiles with categories (achar, papad, handicrafts). Public and private business listing endpoints functional. Proper role-based access control enforced."
 
   - task: "Connection/Interest management API"
     implemented: true
